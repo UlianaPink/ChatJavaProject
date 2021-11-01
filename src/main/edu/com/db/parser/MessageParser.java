@@ -1,7 +1,7 @@
 package main.edu.com.db.parser;
 
 public class MessageParser {
-    public String parser(String message) {
+    public String parse(String message) {
         if (message.startsWith("/snd")) {
             return message.substring("/snd ".length());
         } else if ((message.startsWith("/hist"))) {

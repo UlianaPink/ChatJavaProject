@@ -1,5 +1,7 @@
 package main.edu.com.db.proxy.client;
 
+import main.edu.com.db.parser.MessageParser;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -13,24 +15,23 @@ public class ClientProxy {
                         new BufferedOutputStream(socket.getOutputStream()));
         ) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            MessageParser parser = new MessageParser();
 
             while (true) {
                 // local printing and sending message
-                {
-                    String clientMessage = reader.readLine();
-                    if (clientMessage != null && !clientMessage.isEmpty()) {
-                        out.writeUTF(clientMessage);
-                        out.flush();
-                    }
+                String clientMessage = reader.readLine();
+                if (clientMessage != null && !clientMessage.isEmpty()) {
+                    parser.parse(clientMessage);
+                    out.writeUTF(clientMessage);
+                    out.flush();
                 }
 
                 // server printing
-                {
-                    if (input.available() > 0) {
-                        String messageFromServer = input.readUTF();
-                        System.out.print(messageFromServer);
-                    }
+                if (input.available() > 0) {
+                    String messageFromServer = input.readUTF();
+                    System.out.print(messageFromServer);
                 }
+
             }
 
         } catch (IOException e) {
