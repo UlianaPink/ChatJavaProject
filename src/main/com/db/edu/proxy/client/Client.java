@@ -2,6 +2,7 @@ package main.com.db.edu.proxy.client;
 
 
 import main.com.db.edu.SocketHolder;
+import main.com.db.edu.message.MessageType;
 import main.com.db.edu.parser.MessageParser;
 
 import java.io.*;
@@ -32,6 +33,11 @@ public class Client {
         ) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             MessageParser parser = new MessageParser();
+
+            out.writeUTF(MessageType.NAME.getType());
+            out.writeUTF(name);
+            out.flush();
+
             while (true) {
 
                 String clientMessage = "";
