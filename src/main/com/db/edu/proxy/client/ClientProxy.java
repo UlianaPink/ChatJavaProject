@@ -1,6 +1,6 @@
-package main.edu.com.db.proxy.client;
+package main.com.db.edu.proxy.client;
 
-import main.edu.com.db.parser.MessageParser;
+import main.com.db.edu.parser.MessageParser;
 
 import java.io.*;
 import java.net.Socket;

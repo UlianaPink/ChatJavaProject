@@ -1,6 +1,6 @@
-package main.edu.com.db.proxy.server;
+package main.com.db.edu.proxy.server;
 
-import main.edu.com.db.message.StringMessage;
+import main.com.db.edu.message.StringMessage;
 
 import java.io.*;
 import java.net.ServerSocket;

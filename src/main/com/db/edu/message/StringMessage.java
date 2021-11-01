@@ -1,4 +1,4 @@
-package main.edu.com.db.message;
+package main.com.db.edu.message;
 
 import java.time.LocalTime;
 
