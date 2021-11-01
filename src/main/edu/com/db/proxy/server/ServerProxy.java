@@ -33,15 +33,17 @@ public class ServerProxy {
     }
 
     private static void mainLoop(DataInputStream in, DataOutputStream out) throws IOException {
-
+        String sep = lineSeparator();
         while (true) {
             final String receivedMessage = in.readUTF();
 
             if ("/hist".equals(receivedMessage)) {
                 printHistory(out);
             } else {
-                messageBuffer.add(new StringMessage(receivedMessage));
-                out.writeUTF(receivedMessage);
+                StringMessage stringMessage = new StringMessage(receivedMessage);
+                messageBuffer.add(stringMessage);
+                printTime(stringMessage, out);
+                out.writeUTF(receivedMessage + sep);
             }
 
             out.flush();
