@@ -28,6 +28,7 @@ public class ServerProxy {
                     new ForClientThread(socket, keeper, connections).start();
                     connections.addConnection(socket);
                 }
+                connections.clean();
             } catch (IOException e) {
                 System.out.println("No users");
             }

@@ -29,4 +29,8 @@ public class ConnectionList {
             }
         }
     }
+
+    public void clean() {
+        connections.removeIf(Socket::isClosed);
+    }
 }
