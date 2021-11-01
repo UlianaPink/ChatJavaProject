@@ -4,11 +4,15 @@ package main.com.db.edu.proxy.client;
 import main.com.db.edu.SocketHolder;
 import main.com.db.edu.message.MessageType;
 import main.com.db.edu.parser.MessageParser;
-
+import main.com.db.edu.proxy.server.ServerProxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.Socket;
 
 public class Client {
+
+    private final Logger logger = LoggerFactory.getLogger(Client.class);
     private String name;
 
     public Client(String name) {
@@ -24,6 +28,7 @@ public class Client {
     }
 
     public void run() {
+
         try (
                 final Socket socket = new Socket(SocketHolder.getAddress(), SocketHolder.getPort());
                 final DataInputStream input = new DataInputStream(
@@ -60,7 +65,7 @@ public class Client {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(String.valueOf(e.getStackTrace()));
         }
     }
 }
