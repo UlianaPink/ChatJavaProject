@@ -20,8 +20,13 @@ public class ClientProxy {
             while (true) {
                 // local printing and sending message
                 String clientMessage = reader.readLine();
+//                try {
+//                    clientMessage = reader.readLine();
+//                } catch (InterruptedException ignored) {
+//                }
+
                 if (clientMessage != null && !clientMessage.isEmpty()) {
-                    parser.parse(clientMessage);
+                    clientMessage = parser.parse(clientMessage);
                     out.writeUTF(clientMessage);
                     out.flush();
                 }
