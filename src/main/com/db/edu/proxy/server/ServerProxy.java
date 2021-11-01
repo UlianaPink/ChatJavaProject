@@ -1,5 +1,7 @@
 package main.com.db.edu.proxy.server;
 
+import main.com.db.edu.SocketHolder;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -10,7 +12,7 @@ public class ServerProxy {
         ServerSocket serverSocket = null;
 
         try {
-            serverSocket = new ServerSocket(9998);
+            serverSocket = new ServerSocket(SocketHolder.getPort());
         } catch (IOException e) {
             System.out.println("Can't connect");
         }
