@@ -1,6 +1,6 @@
-package main.edu.com.db.proxy.server;
+package main.com.db.edu.proxy.server;
 
-import main.edu.com.db.message.StringMessage;
+import main.com.db.edu.message.StringMessage;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -61,7 +61,7 @@ public class ServerProxy {
 
     private static void printTime(StringMessage message, DataOutputStream out) throws IOException {
         LocalTime time = message.getTime();
-        out.writeUTF("Time"
+        out.writeUTF("Time "
                 + time.getHour() + ":"
                 + time.getMinute() + ":"
                 + time.getSecond() + " Message: ");

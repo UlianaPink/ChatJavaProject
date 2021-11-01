@@ -1,6 +1,6 @@
-package main.edu.com.db.proxy.client;
+package main.com.db.edu.proxy.client;
 
-import main.edu.com.db.parser.MessageParser;
+import main.com.db.edu.parser.MessageParser;
 
 import java.io.*;
 import java.net.Socket;
@@ -16,15 +16,13 @@ public class ClientProxy {
         ) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             MessageParser parser = new MessageParser();
-
             while (true) {
-                // local printing and sending message
-                String clientMessage = reader.readLine();
-//                try {
-//                    clientMessage = reader.readLine();
-//                } catch (InterruptedException ignored) {
-//                }
 
+                // local printing and sending message
+                String clientMessage = "";
+                if (reader.ready()) {
+                    clientMessage = reader.readLine();
+                }
                 if (clientMessage != null && !clientMessage.isEmpty()) {
                     clientMessage = parser.parse(clientMessage);
                     out.writeUTF(clientMessage);

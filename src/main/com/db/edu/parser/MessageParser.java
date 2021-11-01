@@ -1,6 +1,6 @@
-package main.edu.com.db.parser;
+package main.com.db.edu.parser;
 
-import main.edu.com.db.message.MessageType;
+import main.com.db.edu.message.MessageType;
 
 public class MessageParser {
     public String parse(String message) {
