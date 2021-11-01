@@ -2,11 +2,14 @@ package main.com.db.edu.parser;
 
 import main.com.db.edu.message.MessageType;
 
+import java.util.Objects;
+
 public class MessageParser {
     public String parse(String message) {
         if (message.startsWith(MessageType.SEND.getType())) {
             return message.substring(MessageType.SEND.getType().length());
-        } else if ((message.startsWith(MessageType.HIST.getType()))) {
+        } else if (Objects.equals(MessageType.HIST.getType(), message)
+                || message.startsWith(MessageType.CHROOM.getType())) {
             return message;
         }
         throw new IllegalArgumentException("Wrong message");

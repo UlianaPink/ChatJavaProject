@@ -2,7 +2,8 @@ package main.com.db.edu.message;
 
 public enum MessageType {
     SEND("/snd"),
-    HIST("/hist");
+    HIST("/hist"),
+    CHROOM("/chroom");
 
     private final String type;
 
