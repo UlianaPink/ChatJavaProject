@@ -1,13 +1,17 @@
 package main.edu.com.db.proxy.server;
 
+import main.edu.com.db.message.StringMessage;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import static java.lang.System.lineSeparator;
+
 public class ServerProxy {
 
-    private static final ArrayList<String> messageBuffer = new ArrayList<>();
+    private static final ArrayList<StringMessage> messageBuffer = new ArrayList<>();
 
     public static void main(String[] args) {
         try (final ServerSocket listener = new ServerSocket(9999);
@@ -33,15 +37,25 @@ public class ServerProxy {
             final String receivedMessage = in.readUTF();
 
             if ("/hist".equals(receivedMessage)) {
-                for (String message : messageBuffer) {
-                    out.writeUTF(message);
-                }
+                printHistory(out);
             } else {
-                messageBuffer.add(receivedMessage);
+                messageBuffer.add(new StringMessage(receivedMessage));
                 out.writeUTF(receivedMessage);
             }
 
             out.flush();
+        }
+    }
+
+    private static void printHistory(DataOutputStream out) throws IOException {
+        String sep = lineSeparator();
+
+        for (StringMessage message : messageBuffer) {
+            out.writeUTF("Time"
+                    + message.getTime().getHour() + ":"
+                    + message.getTime().getMinute() + ":"
+                    + message.getTime().getSecond() + " Message: ");
+            out.writeUTF(message.getMessage() + sep);
         }
     }
 }
