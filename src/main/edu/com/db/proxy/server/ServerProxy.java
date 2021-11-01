@@ -5,6 +5,7 @@ import main.edu.com.db.message.StringMessage;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static java.lang.System.lineSeparator;
@@ -51,11 +52,16 @@ public class ServerProxy {
         String sep = lineSeparator();
 
         for (StringMessage message : messageBuffer) {
-            out.writeUTF("Time"
-                    + message.getTime().getHour() + ":"
-                    + message.getTime().getMinute() + ":"
-                    + message.getTime().getSecond() + " Message: ");
+            printTime(message, out);
             out.writeUTF(message.getMessage() + sep);
         }
+    }
+
+    private static void printTime(StringMessage message, DataOutputStream out) throws IOException {
+        LocalTime time = message.getTime();
+        out.writeUTF("Time"
+                + time.getHour() + ":"
+                + time.getMinute() + ":"
+                + time.getSecond() + " Message: ");
     }
 }
