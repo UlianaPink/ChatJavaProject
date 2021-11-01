@@ -24,18 +24,20 @@ public class ServerProxy {
                      new BufferedOutputStream(connection.getOutputStream()));
         ) {
 
-            final String receivedMessage = input.readUTF();
+            while (true) {
+                final String receivedMessage = input.readUTF();
 
-            if ("/hist".equals(receivedMessage)) {
-                for (String message : messageBuffer) {
-                    out.writeUTF(message);
+                if ("/hist".equals(receivedMessage)) {
+                    for (String message : messageBuffer) {
+                        out.writeUTF(message);
+                    }
+                } else {
+                    messageBuffer.add(receivedMessage);
+                    out.writeUTF(receivedMessage);
                 }
-            } else {
-                messageBuffer.add(receivedMessage);
-                out.writeUTF(receivedMessage);
-            }
 
-            out.flush();
+                out.flush();
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
