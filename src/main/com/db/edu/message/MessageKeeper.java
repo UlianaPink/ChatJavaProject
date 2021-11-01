@@ -4,6 +4,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static java.lang.System.lineSeparator;
+
 public class MessageKeeper {
     private final ArrayList<StringMessage> messageBuffer;
 
@@ -17,7 +19,7 @@ public class MessageKeeper {
 
     public void printHistory(DataOutputStream stream) throws IOException {
         for (StringMessage message : messageBuffer) {
-            stream.writeUTF(message.getMessage());
+            stream.writeUTF(message.getMessage() + lineSeparator());
         }
     }
 }
