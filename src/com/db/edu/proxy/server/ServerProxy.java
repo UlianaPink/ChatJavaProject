@@ -17,30 +17,35 @@ public class ServerProxy {
         try (final ServerSocket listener = new ServerSocket(9999);
              final Socket connection = listener.accept();
 
-             final DataInputStream input = new DataInputStream(
+             final DataInputStream in = new DataInputStream(
                      new BufferedInputStream(connection.getInputStream()));
 
              final DataOutputStream out = new DataOutputStream(
                      new BufferedOutputStream(connection.getOutputStream()));
         ) {
 
-            while (true) {
-                final String receivedMessage = input.readUTF();
-
-                if ("/hist".equals(receivedMessage)) {
-                    for (String message : messageBuffer) {
-                        out.writeUTF(message);
-                    }
-                } else {
-                    messageBuffer.add(receivedMessage);
-                    out.writeUTF(receivedMessage);
-                }
-
-                out.flush();
-            }
+            mainLoop(in, out);
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void mainLoop(DataInputStream in, DataOutputStream out) throws IOException {
+
+        while (true) {
+            final String receivedMessage = in.readUTF();
+
+            if ("/hist".equals(receivedMessage)) {
+                for (String message : messageBuffer) {
+                    out.writeUTF(message);
+                }
+            } else {
+                messageBuffer.add(receivedMessage);
+                out.writeUTF(receivedMessage);
+            }
+
+            out.flush();
         }
     }
 }
