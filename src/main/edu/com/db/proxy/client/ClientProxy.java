@@ -16,15 +16,13 @@ public class ClientProxy {
         ) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             MessageParser parser = new MessageParser();
-
             while (true) {
-                // local printing and sending message
-                String clientMessage = reader.readLine();
-//                try {
-//                    clientMessage = reader.readLine();
-//                } catch (InterruptedException ignored) {
-//                }
 
+                // local printing and sending message
+                String clientMessage = "";
+                if (reader.ready()) {
+                    clientMessage = reader.readLine();
+                }
                 if (clientMessage != null && !clientMessage.isEmpty()) {
                     clientMessage = parser.parse(clientMessage);
                     out.writeUTF(clientMessage);
