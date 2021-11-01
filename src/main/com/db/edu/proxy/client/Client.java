@@ -35,6 +35,7 @@ public class Client {
             MessageParser parser = new MessageParser();
 
             out.writeUTF(MessageType.NAME.getType());
+            out.flush();
             out.writeUTF(name);
             out.flush();
 
