@@ -7,13 +7,9 @@ import java.util.ArrayList;
 
 public class ServerProxy {
 
-    private final ArrayList<String> messageBuffer;
+    private static final ArrayList<String> messageBuffer = new ArrayList<>();
 
-    public ServerProxy() {
-        messageBuffer = new ArrayList<>();
-    }
-
-    public void main(String[] args) {
+    public static void main(String[] args) {
         try (final ServerSocket listener = new ServerSocket(9999);
              final Socket connection = listener.accept();
 
@@ -31,7 +27,7 @@ public class ServerProxy {
         }
     }
 
-    private void mainLoop(DataInputStream in, DataOutputStream out) throws IOException {
+    private static void mainLoop(DataInputStream in, DataOutputStream out) throws IOException {
 
         while (true) {
             final String receivedMessage = in.readUTF();
