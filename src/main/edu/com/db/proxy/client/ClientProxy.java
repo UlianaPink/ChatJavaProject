@@ -1,7 +1,6 @@
-package com.db.edu.proxy.client;
+package main.edu.com.db.proxy.client;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ClientProxy {
