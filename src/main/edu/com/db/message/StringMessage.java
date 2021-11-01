@@ -1,4 +1,4 @@
-package com.db.edu.message;
+package main.edu.com.db.message;
 
 public class StringMessage {
     private final String value;
