@@ -9,19 +9,30 @@ import static java.lang.System.lineSeparator;
 public class MessageKeeper {
     private final String roomId;
     private final int SIZE_OF_BUFFER = 15;
-    private final ArrayList<StringMessage> messageBuffer;
+    private final ArrayList<String> messageBuffer;
     private final FileController fileController;
 
     public MessageKeeper(String roomId) {
         this.roomId = roomId;
-        this.messageBuffer = new ArrayList<>();
         this.fileController = new FileController(roomId);
+        this.messageBuffer = fulfillBufferFromFile();
     }
 
-    public synchronized void addMessage(StringMessage message) throws IOException {
-        messageBuffer.add(message);
+    public synchronized void addMessage(StringMessage message) {
+        final String messageString = message.getMessage();
+        messageBuffer.add(messageString);
         removeFirstIfOverflow();
-        writeMessageToFile(message.getMessage());
+        writeMessageToFile(messageString);
+    }
+
+    public synchronized void printHistory(DataOutputStream stream) throws IOException {
+        for (String message : messageBuffer) {
+            stream.writeUTF(message + lineSeparator());
+        }
+    }
+
+    private synchronized ArrayList<String> fulfillBufferFromFile() {
+        return fileController.getLastMessages(SIZE_OF_BUFFER);
     }
 
     private void removeFirstIfOverflow() {
@@ -30,13 +41,8 @@ public class MessageKeeper {
         }
     }
 
-    private void writeMessageToFile(String message) throws IOException {
+    private void writeMessageToFile(String message) {
         fileController.addMessage(message);
     }
 
-    public synchronized void printHistory(DataOutputStream stream) throws IOException {
-        for (StringMessage message : messageBuffer) {
-            stream.writeUTF(message.getMessage() + lineSeparator());
-        }
-    }
 }
