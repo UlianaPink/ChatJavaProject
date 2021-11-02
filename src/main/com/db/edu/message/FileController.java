@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public class FileController {
@@ -28,9 +29,11 @@ public class FileController {
 
         try {
             jarDirPath = Paths.get(
-                    Optional.ofNullable(ClassLoader.getSystemClassLoader().getResource(".")).orElseThrow().toURI()
-            );
-        } catch (URISyntaxException e) {
+                    Optional.ofNullable(getClass().getProtectionDomain().getCodeSource().getLocation())
+                            .orElseThrow()
+                            .toURI()
+            ).getParent();
+        } catch (URISyntaxException | NoSuchElementException e) {
             throw new FileControllerException("Unable to get current directory: " + e);
         }
 
