@@ -1,6 +1,6 @@
-package test.com.db.edu.proxy;
+package com.db.edu.proxy;
 
-import main.com.db.edu.parser.MessageParser;
+import com.db.edu.parser.MessageParser;
 import org.junit.jupiter.api.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
