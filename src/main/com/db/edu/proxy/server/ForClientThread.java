@@ -21,7 +21,7 @@ public class ForClientThread extends Thread {
 
     private Room getRoomById(String id, ArrayList<Room> rooms) {
         for (Room room : rooms) {
-            if (id.equals(room.getId())) {
+            if (id.trim().equals(room.getId().trim())) {
                 return room;
             }
         }
