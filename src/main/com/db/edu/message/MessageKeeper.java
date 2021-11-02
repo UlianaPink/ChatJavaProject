@@ -15,10 +15,10 @@ public class MessageKeeper {
     public MessageKeeper(String roomId) {
         this.roomId = roomId;
         this.messageBuffer = new ArrayList<>();
-        this.fileController = new FileController();
+        this.fileController = new FileController(roomId);
     }
 
-    public void addMessage(StringMessage message) {
+    public synchronized void addMessage(StringMessage message) throws IOException {
         messageBuffer.add(message);
         removeFirstIfOverflow();
         writeMessageToFile(message.getMessage());
@@ -30,11 +30,11 @@ public class MessageKeeper {
         }
     }
 
-    private void writeMessageToFile(String message) {
-        fileController.addMessage(message, roomId);
+    private void writeMessageToFile(String message) throws IOException {
+        fileController.addMessage(message);
     }
 
-    public void printHistory(DataOutputStream stream) throws IOException {
+    public synchronized void printHistory(DataOutputStream stream) throws IOException {
         for (StringMessage message : messageBuffer) {
             stream.writeUTF(message.getMessage() + lineSeparator());
         }
