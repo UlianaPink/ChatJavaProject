@@ -1,3 +1,1 @@
-cd target
-java -jar server-jar-with-dependencies.jar
-cd ..
+java -jar ./target/server-jar-with-dependencies.jar
