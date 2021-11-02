@@ -18,6 +18,8 @@ public class MessageParser {
             return message;
         } else if (message.startsWith(MessageType.CHID.getType())) {
             return message;
+        } else if (message.startsWith(MessageType.SDNP.getType())){
+            return message;
         } else {
             throw new IllegalArgumentException("You sent a message without any command. Please try again with existing commands. Ex: /snd message\n");
         }

@@ -9,20 +9,22 @@ import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
 public class Client {
 
     private final Logger logger = LoggerFactory.getLogger(Client.class);
-    private BufferedReader reader;
+    private final BufferedReader reader;
+    PrintStream ps = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     private String name;
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public Client() {
-
+    public Client() throws UnsupportedEncodingException {
+        this.reader = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
     }
 
     public Client(BufferedReader reader) {
@@ -37,7 +39,6 @@ public class Client {
                 final DataOutputStream out = new DataOutputStream(
                         new BufferedOutputStream(socket.getOutputStream()));
         ) {
-            reader = new BufferedReader(new InputStreamReader(System.in));
             MessageParser parser = new MessageParser();
             socket.setSoTimeout(3000);
 
@@ -48,7 +49,7 @@ public class Client {
             }
 
         } catch (IOException e) {
-            System.out.print("Oops, something went wrong, please, see the logs\n");
+            System.out.println("Oops, something went wrong, please, see the logs\n");
             logger.error("Error occurred in client ", e);
         }
     }
@@ -58,7 +59,7 @@ public class Client {
         out.flush();
         if ((input.available() > 0 && !Objects.equals(input.readUTF(), MessageType.CHECK.getType()))
                 || input.available() < 0) {
-            System.out.print("Sorry, server is not available\n");
+            System.out.println("Sorry, server is not available\n");
             throw new IllegalArgumentException("Cannot connect to server");
         }
     }
@@ -66,7 +67,8 @@ public class Client {
     private void getInfoFromServer(DataInputStream input) throws IOException {
         if (input.available() > 0) {
             String messageFromServer = input.readUTF();
-            System.out.print(messageFromServer);
+            System.out.println(messageFromServer);
+            ps.println(messageFromServer);
         }
     }
 
@@ -84,7 +86,7 @@ public class Client {
                 out.flush();
             } catch (IllegalArgumentException e) {
                 logger.error("Client input is incorrect: " + clientMessage);
-                System.out.print(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -101,6 +103,13 @@ public class Client {
             out.flush();
             clientMessage = clientMessage.substring(MessageType.CHROOM.getType().length());
             setName(clientMessage);
+        } else if (clientMessage.startsWith(MessageType.SDNP.getType())) {
+            String receiverName = clientMessage.split(" ")[1];
+            out.writeUTF(MessageType.SDNP.getType());
+            out.flush();
+            out.writeUTF(receiverName);
+            out.flush();
+            clientMessage = clientMessage.substring(MessageType.SDNP.getType().length() + receiverName.length() + 2);
         }
         return clientMessage;
     }

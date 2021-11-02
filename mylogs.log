@@ -51,3 +51,19 @@ java.lang.IllegalArgumentException: Cannot connect to server
 02-11-2021 13:47:08 ERROR ServerProxy:39 - Can't connect
 02-11-2021 13:47:45 ERROR ServerProxy:39 - Can't connect
 02-11-2021 13:48:06 ERROR ServerProxy:39 - Can't connect
+02-11-2021 14:00:23 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:14:25 ERROR Client:53 - Error occurred in client 
+java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:399)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:242)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:224)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:403)
+	at java.base/java.net.Socket.connect(Socket.java:609)
+	at java.base/java.net.Socket.connect(Socket.java:558)
+	at java.base/java.net.Socket.<init>(Socket.java:454)
+	at java.base/java.net.Socket.<init>(Socket.java:231)
+	at main.com.db.edu.proxy.client.Client.run(Client.java:36)
+	at main.com.db.edu.proxy.client.ClientProxy.main(ClientProxy.java:12)
+02-11-2021 14:14:30 INFO  ServerProxy:27 - Caught user
