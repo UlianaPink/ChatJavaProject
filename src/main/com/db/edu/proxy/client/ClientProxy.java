@@ -4,7 +4,6 @@ import main.com.db.edu.proxy.server.ServerProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class ClientProxy {
     public static void main(String[] args) {
         final Logger logger = LoggerFactory.getLogger(ServerProxy.class);
