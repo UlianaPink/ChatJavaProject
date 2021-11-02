@@ -34,6 +34,15 @@ public class UserList {
         }
     }
 
+    public User findUserByName(String name) {
+        for (User user : users) {
+            if (name.equals(user.getId())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public void clean() {
         users.removeIf(User::isClosed);
     }

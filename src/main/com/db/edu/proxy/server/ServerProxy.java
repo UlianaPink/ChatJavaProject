@@ -27,7 +27,6 @@ public class ServerProxy {
                         logger.info("Caught user");
                         User user = new User(socket);
                         rooms.get(0).addUser(user);
-                        user.connectOut().writeUTF("Welcome to MainRoom");
                         new ForClientThread(user, rooms).start();
                     }
                     cleanRooms(rooms);
@@ -36,7 +35,7 @@ public class ServerProxy {
                 }
             }
         } catch (IOException e) {
-            logger.error("Can't connect");
+            logger.error("Can't create main server socket");
         }
     }
 
