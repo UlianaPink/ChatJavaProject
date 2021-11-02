@@ -1,6 +1,6 @@
 package com.db.edu.message;
 
-import main.com.db.edu.exceptions.FileControllerException;
+import com.db.edu.exceptions.FileControllerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
