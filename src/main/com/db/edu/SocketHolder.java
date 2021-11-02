@@ -6,6 +6,6 @@ public class SocketHolder {
     }
 
     public static Integer getPort() {
-        return 9998;
+        return 9995;
     }
 }
