@@ -3,7 +3,7 @@ package test.com.db.edu.proxy;
 import main.com.db.edu.parser.MessageParser;
 import org.junit.jupiter.api.Test;
 
-
+import static org.fest.assertions.Assertions.assertThat;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -51,9 +51,8 @@ public class ParserTest {
     @Test
     public void noCommandBeforeMessageSent() {
         clientMessage = "Hello";
-        System.setOut(stream);
-        assertEquals("You sent a message without any command. Please try again with existing commands. Ex: /snd message",
-                outContent.toString());
+        final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,()->parser.parse(clientMessage));
+        assertThat(thrown).hasMessage("Wrong message");
     }
 
 
