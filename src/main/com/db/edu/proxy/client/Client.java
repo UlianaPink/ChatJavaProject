@@ -65,7 +65,7 @@ public class Client {
             }
 
         } catch (IOException e) {
-            logger.error(String.valueOf(e.getStackTrace()));
+            logger.error("Error occurred in client ", e);
         }
     }
 }
