@@ -42,4 +42,6 @@ public class ParserTest {
         assertEquals(" Hello Мир!№;(%?:%№Ё", clientMessage);
     }
 
+
+
 }
