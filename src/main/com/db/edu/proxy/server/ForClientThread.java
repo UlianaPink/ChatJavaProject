@@ -86,8 +86,8 @@ public class ForClientThread extends Thread {
         if (receiver == null) {
             user.connectOut().writeUTF("Incorrect username");
         } else {
-            user.connectOut().writeUTF("Message sent to " + receiver.getId());
-            receiver.connectOut().writeUTF(messageToReceive);
+            user.connectOut().writeUTF("Personal message for " + receiver.getId() + ": " + messageToReceive);
+            receiver.connectOut().writeUTF("Personal message for you from " + user.getId() + ": " + messageToReceive);
         }
     }
 
