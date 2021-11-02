@@ -4,11 +4,16 @@ import main.com.db.edu.parser.MessageParser;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
     MessageParser parser =  new MessageParser();
     String clientMessage = "";
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream stream = new PrintStream(outContent);
 
     @Test
     public void baseMessageSent() {
@@ -42,6 +47,14 @@ public class ParserTest {
         assertEquals(" Hello Мир!№;(%?:%№Ё", clientMessage);
     }
 
+
+    @Test
+    public void noCommandBeforeMessageSent() {
+        clientMessage = "Hello";
+        System.setOut(stream);
+        assertEquals("You sent a message without any command. Please try again with existing commands. Ex: /snd message",
+                outContent.toString());
+    }
 
 
 }
