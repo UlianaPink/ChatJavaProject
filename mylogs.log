@@ -65,3 +65,8 @@ java.lang.IllegalArgumentException: Cannot connect to server
 02-11-2021 13:47:08 ERROR ServerProxy:39 - Can't connect
 02-11-2021 13:47:45 ERROR ServerProxy:39 - Can't connect
 02-11-2021 13:48:06 ERROR ServerProxy:39 - Can't connect
+02-11-2021 14:25:02 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:25:07 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:27:37 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:27:42 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:28:40 ERROR Client:86 - Client input is incorrect: /sdnp name hello
