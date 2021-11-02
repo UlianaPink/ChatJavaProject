@@ -87,7 +87,7 @@ public class Client {
             out.flush();
             clientMessage = clientMessage.substring(MessageType.CHID.getType().length());
             setName(clientMessage);
-        } else if(clientMessage.startsWith(MessageType.CHROOM.getType())) {
+        } else if (clientMessage.startsWith(MessageType.CHROOM.getType())) {
             out.writeUTF(MessageType.CHROOM.getType());
             out.flush();
             clientMessage = clientMessage.substring(MessageType.CHROOM.getType().length());

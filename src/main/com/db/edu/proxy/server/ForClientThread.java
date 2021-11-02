@@ -1,10 +1,11 @@
 package main.com.db.edu.proxy.server;
 
-import main.com.db.edu.message.MessageType;
 import main.com.db.edu.message.StringMessage;
 import main.com.db.edu.proxy.server.user.User;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ForClientThread extends Thread {

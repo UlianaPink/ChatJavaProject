@@ -4,20 +4,20 @@ import java.io.*;
 import java.net.Socket;
 
 public class User {
-    private String id;
     private final Socket socket;
+    private String id;
 
     public User(Socket socket) {
         this.socket = socket;
         id = "Somebody";
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public DataOutputStream connectOut() throws IOException {
