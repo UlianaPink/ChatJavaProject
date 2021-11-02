@@ -76,6 +76,7 @@ public class ForClientThread extends Thread {
         } else {
             user.connectOut().writeUTF("This name already exists!");
         }
+        user.connectOut().flush();
     }
 
     private void sendPrivateMessage() throws IOException {
