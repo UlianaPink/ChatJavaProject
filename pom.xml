@@ -46,7 +46,7 @@
                             <archive>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-                                    <mainClass>main.com.db.edu.proxy.client.ClientProxy</mainClass>
+                                    <mainClass>com.db.edu.proxy.client.ClientProxy</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -65,7 +65,7 @@
                             <archive>
                                 <manifest>
                                     <addClasspath>true</addClasspath>
-                                    <mainClass>main.com.db.edu.proxy.server.ServerProxy</mainClass>
+                                    <mainClass>com.db.edu.proxy.server.ServerProxy</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
