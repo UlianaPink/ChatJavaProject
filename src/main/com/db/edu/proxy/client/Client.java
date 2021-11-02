@@ -16,7 +16,6 @@ public class Client {
 
     private final Logger logger = LoggerFactory.getLogger(Client.class);
     private final BufferedReader reader;
-    PrintStream ps = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     private String name;
 
     public void setName(String name) {
@@ -68,7 +67,6 @@ public class Client {
         if (input.available() > 0) {
             String messageFromServer = input.readUTF();
             System.out.println(messageFromServer);
-            ps.println(messageFromServer);
         }
     }
 

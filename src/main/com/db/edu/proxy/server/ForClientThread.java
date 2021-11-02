@@ -60,8 +60,6 @@ public class ForClientThread extends Thread {
                 changeRoom();
                 break;
             default:
-                PrintStream ps = new PrintStream(System.out, true, StandardCharsets.UTF_8);
-                ps.println(receivedLine);
                 sendMessage(receivedLine);
                 break;
         }
