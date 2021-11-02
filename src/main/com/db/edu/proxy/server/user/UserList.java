@@ -13,8 +13,12 @@ public class UserList {
         this.users = new ArrayList<>();
     }
 
-    public void addConnection(Socket socket) {
-        users.add(new User(socket));
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
     }
 
     public void sendToEveryone(String message) {
