@@ -1,15 +1,18 @@
 package main.com.db.edu.proxy.client;
 
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientProxy {
     public static void main(String[] args) {
+        final Logger logger = LoggerFactory.getLogger(ClientProxy.class);
 
-        NameGenerator nameGenerator = new NameGenerator();
         try {
-            Client client = new Client(nameGenerator.getName());
+            Client client = new Client();
             client.run();
-        } catch (IOException ignored) {
+        } catch (Exception e) {
+            System.out.print("Oops, something wrong has occurred\nIf you want to see more, please see logs\n");
+            logger.error("Exception occurred while starting a client\n", e);
         }
     }
 }

@@ -1,0 +1,14 @@
+02-11-2021 10:46:45 INFO  ServerProxy:30 - Caught user
+02-11-2021 10:46:45 ERROR ClientProxy:15 - Exception occurred while starting a client
+
+java.lang.IllegalArgumentException: Cannot connect to server
+	at main.com.db.edu.proxy.client.Client.checkAvailability(Client.java:83)
+	at main.com.db.edu.proxy.client.Client.run(Client.java:69)
+	at main.com.db.edu.proxy.client.ClientProxy.main(ClientProxy.java:12)
+02-11-2021 10:49:44 INFO  ServerProxy:30 - Caught user
+02-11-2021 10:49:44 ERROR ClientProxy:15 - Exception occurred while starting a client
+
+java.lang.IllegalArgumentException: Cannot connect to server
+	at main.com.db.edu.proxy.client.Client.checkAvailability(Client.java:83)
+	at main.com.db.edu.proxy.client.Client.run(Client.java:69)
+	at main.com.db.edu.proxy.client.ClientProxy.main(ClientProxy.java:12)
