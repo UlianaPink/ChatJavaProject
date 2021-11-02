@@ -4,17 +4,16 @@ import main.com.db.edu.proxy.server.ServerProxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 
 public class ClientProxy {
     public static void main(String[] args) {
         final Logger logger = LoggerFactory.getLogger(ServerProxy.class);
-        NameGenerator nameGenerator = new NameGenerator();
         try {
-            Client client = new Client(nameGenerator.getName());
+            Client client = new Client();
             client.run();
-        } catch (IOException e) {
-            logger.error("Exception occurred while starting a client ", e);
+        } catch (Exception e) {
+            System.out.print("Oops, something wrong has occurred\nIf you want to see more, please see logs\n");
+            logger.error("Exception occurred while starting a client\n", e);
         }
     }
 }
