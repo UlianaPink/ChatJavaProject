@@ -47,3 +47,7 @@ java.lang.IllegalArgumentException: Cannot connect to server
 02-11-2021 12:14:28 INFO  ServerProxy:27 - Caught user
 02-11-2021 12:17:45 INFO  ServerProxy:27 - Caught user
 02-11-2021 12:26:18 INFO  ServerProxy:27 - Caught user
+02-11-2021 13:46:46 ERROR ServerProxy:39 - Can't connect
+02-11-2021 13:47:08 ERROR ServerProxy:39 - Can't connect
+02-11-2021 13:47:45 ERROR ServerProxy:39 - Can't connect
+02-11-2021 13:48:06 ERROR ServerProxy:39 - Can't connect
