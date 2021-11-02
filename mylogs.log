@@ -38,3 +38,10 @@ java.lang.IllegalArgumentException: Cannot connect to server
 	at main.com.db.edu.proxy.client.Client.checkAvailability(Client.java:53)
 	at main.com.db.edu.proxy.client.Client.run(Client.java:38)
 	at main.com.db.edu.proxy.client.ClientProxy.main(ClientProxy.java:12)
+02-11-2021 11:55:53 INFO  ServerProxy:27 - Caught user
+02-11-2021 12:03:00 INFO  ServerProxy:27 - Caught user
+02-11-2021 12:03:02 INFO  ServerProxy:27 - Caught user
+02-11-2021 12:06:28 INFO  ServerProxy:27 - Caught user
+02-11-2021 12:06:30 INFO  ServerProxy:27 - Caught user
+02-11-2021 12:08:01 INFO  ServerProxy:27 - Caught user
+02-11-2021 12:14:28 INFO  ServerProxy:27 - Caught user

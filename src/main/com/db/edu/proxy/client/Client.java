@@ -14,10 +14,19 @@ import java.util.Objects;
 public class Client {
 
     private final Logger logger = LoggerFactory.getLogger(Client.class);
+    private BufferedReader reader;
     private String name;
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Client() {
+
+    }
+
+    public Client(BufferedReader reader) {
+        this.reader = reader;
     }
 
     public void run() {
@@ -28,7 +37,7 @@ public class Client {
                 final DataOutputStream out = new DataOutputStream(
                         new BufferedOutputStream(socket.getOutputStream()));
         ) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            reader = new BufferedReader(new InputStreamReader(System.in));
             MessageParser parser = new MessageParser();
             socket.setSoTimeout(3000);
 
