@@ -1,5 +1,6 @@
 package main.com.db.edu.proxy.server;
 
+import main.com.db.edu.message.MessageType;
 import main.com.db.edu.message.StringMessage;
 import main.com.db.edu.proxy.server.user.User;
 
