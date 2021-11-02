@@ -7,9 +7,14 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import main.com.db.edu.proxy.client.ClientProxy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class ServerProxy {
 
     public static void main(String[] args) {
+        final Logger logger = LoggerFactory.getLogger(ServerProxy.class);
         ServerSocket serverSocket = null;
         MessageKeeper keeper = new MessageKeeper();
         ConnectionList connections = new ConnectionList();
@@ -17,19 +22,20 @@ public class ServerProxy {
         try {
             serverSocket = new ServerSocket(SocketHolder.getPort());
         } catch (IOException e) {
-            System.out.println("Can't connect");
+            logger.error("Can't connect");
         }
 
         while (true) {
             try {
                 Socket socket = serverSocket.accept();
                 if (socket != null) {
-                    System.out.println("Caught user");
+                    logger.info("Caught user");
                     new ForClientThread(socket, keeper, connections).start();
                     connections.addConnection(socket);
                 }
+                connections.clean();
             } catch (IOException e) {
-                System.out.println("No users");
+                logger.error("No users");
             }
         }
     }
