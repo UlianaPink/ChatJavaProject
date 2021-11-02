@@ -1,6 +1,6 @@
-package test.com.db.edu.proxy.client;
+package com.db.edu.proxy.client;
 
-import main.com.db.edu.proxy.client.Client;
+import com.db.edu.proxy.client.Client;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
