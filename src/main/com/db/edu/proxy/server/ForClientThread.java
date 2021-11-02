@@ -40,8 +40,10 @@ public class ForClientThread extends Thread {
         String receivedLine = in.readUTF();
         if ("/hist".equals(receivedLine)) {
             keeper.printHistory(out);
-        } else if ("/name".equals(receivedLine)) {
+        } else if ("/chid".equals(receivedLine)) {
             username = in.readUTF();
+        } else if ("/checkConnection".equals(receivedLine)) {
+            out.writeUTF("/checkConnection");
         } else {
             StringMessage message = new StringMessage(receivedLine, username);
             keeper.addMessage(message);
