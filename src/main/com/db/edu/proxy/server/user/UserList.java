@@ -1,7 +1,7 @@
 package main.com.db.edu.proxy.server.user;
 
-import java.io.*;
-import java.net.Socket;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.lang.System.lineSeparator;
