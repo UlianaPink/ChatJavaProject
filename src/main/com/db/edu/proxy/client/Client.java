@@ -84,7 +84,7 @@ public class Client {
                 out.flush();
             } catch (IllegalArgumentException e) {
                 logger.error("Client input is incorrect: " + clientMessage);
-                System.out.print("You sent a message without any command. Please try again with existing commands. Ex: /snd message\n");
+                System.out.print(e.getMessage());
             }
         }
     }
