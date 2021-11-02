@@ -63,6 +63,7 @@ public class ForClientThread extends Thread {
                 room.removeUser(user);
                 room = getRoomById(newRoom, rooms);
                 room.addUser(user);
+                out.writeUTF("You changed room to " + room.getId());
                 break;
             default:
                 StringMessage message = new StringMessage(receivedLine, user);
