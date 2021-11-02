@@ -94,7 +94,7 @@ public class Client {
         if (clientMessage.startsWith(MessageType.CHID.getType())) {
             out.writeUTF(MessageType.CHID.getType());
             out.flush();
-            clientMessage = clientMessage.substring(MessageType.CHID.getType().length());
+            clientMessage = clientMessage.substring(MessageType.CHID.getType().length()).trim();
             setName(clientMessage);
         } else if (clientMessage.startsWith(MessageType.CHROOM.getType())) {
             out.writeUTF(MessageType.CHROOM.getType());
