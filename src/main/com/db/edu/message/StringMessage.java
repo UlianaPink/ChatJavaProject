@@ -1,19 +1,21 @@
 package main.com.db.edu.message;
 
+import main.com.db.edu.proxy.server.user.User;
+
 import java.time.LocalTime;
 
 public class StringMessage {
     private final String value;
     private final LocalTime time;
-    private final String senderName;
+    private final User user;
 
-    public StringMessage(String value, String name) {
+    public StringMessage(String value, User user) {
         this.value = value;
         time = LocalTime.now();
-        this.senderName = name;
+        this.user = user;
     }
 
     public String getMessage() {
-        return (senderName + ": " + value + " (" + time.getHour() + ":" + time.getMinute() + ":" + time.getSecond() + ")");
+        return (user.getId() + ": " + value + " (" + time.getHour() + ":" + time.getMinute() + ":" + time.getSecond() + ")");
     }
 }

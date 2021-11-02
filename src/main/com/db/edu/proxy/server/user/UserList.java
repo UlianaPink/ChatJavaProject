@@ -24,7 +24,7 @@ public class UserList {
     public void sendToEveryone(String message) {
         for (User user : users) {
             try {
-                DataOutputStream out = user.connect();
+                DataOutputStream out = user.connectOut();
                 out.writeUTF(lineSeparator() + message);
                 out.flush();
 

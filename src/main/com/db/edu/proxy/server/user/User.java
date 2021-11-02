@@ -1,12 +1,10 @@
 package main.com.db.edu.proxy.server.user;
 
-import java.io.BufferedOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 public class User {
-    private final String id;
+    private String id;
     private final Socket socket;
 
     public User(Socket socket) {
@@ -14,12 +12,20 @@ public class User {
         id = "Somebody";
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }
 
-    public DataOutputStream connect() throws IOException {
+    public DataOutputStream connectOut() throws IOException {
         return new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+    }
+
+    public DataInputStream connectIn() throws IOException {
+        return new DataInputStream(new BufferedInputStream(socket.getInputStream()));
     }
 
     public boolean isClosed() {
