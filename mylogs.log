@@ -88,3 +88,4 @@ java.net.ConnectException: Connection refused: connect
 02-11-2021 14:14:30 INFO  ServerProxy:27 - Caught user
 02-11-2021 14:28:31 INFO  ServerProxy:27 - Caught user
 02-11-2021 14:28:48 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:48:46 INFO  ServerProxy:27 - Caught user

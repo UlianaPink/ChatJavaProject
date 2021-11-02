@@ -4,6 +4,8 @@ import main.com.db.edu.message.StringMessage;
 import main.com.db.edu.proxy.server.user.User;
 
 import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ForClientThread extends Thread {
@@ -54,6 +56,8 @@ public class ForClientThread extends Thread {
                 changeRoom();
                 break;
             default:
+                PrintStream ps = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+                ps.println(receivedLine);
                 sendMessage(receivedLine);
                 break;
         }
