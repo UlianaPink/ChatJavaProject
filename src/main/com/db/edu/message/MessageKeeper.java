@@ -21,7 +21,7 @@ public class MessageKeeper {
     public void addMessage(StringMessage message) {
         messageBuffer.add(message);
         removeFirstIfOverflow();
-        writeMessageToFile(message.getMessage();
+        writeMessageToFile(message.getMessage());
     }
 
     private void removeFirstIfOverflow() {

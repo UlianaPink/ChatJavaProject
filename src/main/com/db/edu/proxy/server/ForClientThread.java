@@ -2,6 +2,7 @@ package main.com.db.edu.proxy.server;
 
 import main.com.db.edu.message.MessageKeeper;
 import main.com.db.edu.message.StringMessage;
+import main.com.db.edu.proxy.server.user.UserList;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,10 +10,10 @@ import java.net.Socket;
 public class ForClientThread extends Thread {
     private final Socket socket;
     private final MessageKeeper keeper;
-    private final ConnectionList connections;
+    private final UserList connections;
     private String username;
 
-    public ForClientThread(Socket clientSocket, MessageKeeper keeper, ConnectionList connections) {
+    public ForClientThread(Socket clientSocket, MessageKeeper keeper, UserList connections) {
         this.socket = clientSocket;
         this.keeper = keeper;
         this.connections = connections;

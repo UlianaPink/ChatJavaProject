@@ -1,4 +1,4 @@
-package main.com.db.edu.proxy.server;
+package main.com.db.edu.proxy.server.user;
 
 import java.io.*;
 import java.net.Socket;
@@ -6,21 +6,21 @@ import java.util.ArrayList;
 
 import static java.lang.System.lineSeparator;
 
-public class ConnectionList {
-    private final ArrayList<Socket> connections;
+public class UserList {
+    private final ArrayList<User> users;
 
-    public ConnectionList() {
-        this.connections = new ArrayList<>();
+    public UserList() {
+        this.users = new ArrayList<>();
     }
 
     public void addConnection(Socket socket) {
-        connections.add(socket);
+        users.add(new User(socket));
     }
 
     public void sendToEveryone(String message) {
-        for (Socket socket : connections) {
+        for (User user : users) {
             try {
-                DataOutputStream out = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+                DataOutputStream out = user.connect();
                 out.writeUTF(lineSeparator() + message);
                 out.flush();
 
@@ -31,6 +31,6 @@ public class ConnectionList {
     }
 
     public void clean() {
-        connections.removeIf(Socket::isClosed);
+        users.removeIf(User::isClosed);
     }
 }
