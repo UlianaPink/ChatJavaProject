@@ -5,19 +5,20 @@ import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+
+import static org.fest.assertions.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
 public class ClientTest {
     BufferedReader readerStub = mock(BufferedReader.class);
 
     @Test
     public void baseTest() throws IOException {
         when(readerStub.ready()).thenReturn(true);
-        when(readerStub.readLine()).thenReturn("Hello World Test");
-
+        when(readerStub.readLine()).thenReturn("/snd Base Client Test ");
         Client clientSut = new Client();
         clientSut.run();
-
 
     }
 }

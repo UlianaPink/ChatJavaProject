@@ -31,6 +31,10 @@ public class Room {
         users.removeUser(user);
     }
 
+    public UserList getUserList() {
+        return users;
+    }
+
     public void clean() {
         users.clean();
     }
