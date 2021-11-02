@@ -58,7 +58,7 @@ public class FileController {
 
     public void addMessage(String message) {
         try {
-            Files.writeString(filePath, message, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+            Files.writeString(filePath, message + System.lineSeparator(), StandardCharsets.UTF_8, StandardOpenOption.APPEND);
         } catch (IOException e) {
             logger.error("Could not write to file " + filePath);
         }
