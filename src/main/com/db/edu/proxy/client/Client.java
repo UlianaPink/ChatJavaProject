@@ -89,8 +89,7 @@ public class Client {
         }
     }
 
-    private String sendMessageSeparately(DataOutputStream out, String clientMessage)
-            throws IOException {
+    private String sendMessageSeparately(DataOutputStream out, String clientMessage) throws IOException {
         if (clientMessage.startsWith(MessageType.CHID.getType())) {
             out.writeUTF(MessageType.CHID.getType());
             out.flush();
@@ -102,12 +101,15 @@ public class Client {
             clientMessage = clientMessage.substring(MessageType.CHROOM.getType().length());
             setName(clientMessage);
         } else if (clientMessage.startsWith(MessageType.SDNP.getType())) {
-            String receiverName = clientMessage.split(" ")[1];
+            String[] receiverName = clientMessage.split(" ");
+            if (receiverName.length < 3) {
+                throw new IllegalArgumentException("Input message\n");
+            }
             out.writeUTF(MessageType.SDNP.getType());
             out.flush();
-            out.writeUTF(receiverName);
+            out.writeUTF(receiverName[1]);
             out.flush();
-            clientMessage = clientMessage.substring(MessageType.SDNP.getType().length() + receiverName.length() + 2);
+            clientMessage = clientMessage.substring(MessageType.SDNP.getType().length() + receiverName[1].length() + 2);
         }
         return clientMessage;
     }

@@ -92,6 +92,7 @@ public class ForClientThread extends Thread {
         } else {
             user.connectOut().writeUTF("Personal message for " + receiver.getId() + ": " + messageToReceive);
             receiver.connectOut().writeUTF("Personal message for you from " + user.getId() + ": " + messageToReceive);
+            receiver.connectOut().flush();
         }
     }
 
