@@ -10,7 +10,8 @@ public class MessageParser {
         if (message.startsWith(MessageType.SEND.getType())) {
             return message.length() < maxLength + MessageType.SEND.getType().length()
                     ? message.substring(MessageType.SEND.getType().length())
-                    : message.substring(MessageType.SEND.getType().length(), maxLength + MessageType.SEND.getType().length())
+                    : message.substring(MessageType.SEND.getType().length(), maxLength
+                    + MessageType.SEND.getType().length())
                     + "...";
         } else if (Objects.equals(MessageType.HIST.getType(), message)
                 || message.startsWith(MessageType.CHROOM.getType())) {
