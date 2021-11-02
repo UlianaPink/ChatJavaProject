@@ -35,7 +35,7 @@ public class ServerProxy {
                 }
             }
         } catch (IOException e) {
-            logger.error("Can't connect");
+            logger.error("Can't create main server socket");
         }
     }
 
