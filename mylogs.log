@@ -65,8 +65,13 @@ java.lang.IllegalArgumentException: Cannot connect to server
 02-11-2021 13:47:08 ERROR ServerProxy:39 - Can't connect
 02-11-2021 13:47:45 ERROR ServerProxy:39 - Can't connect
 02-11-2021 13:48:06 ERROR ServerProxy:39 - Can't connect
+02-11-2021 14:25:02 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:25:07 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:27:37 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:27:42 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:28:40 ERROR Client:86 - Client input is incorrect: /sdnp name hello
 02-11-2021 14:00:23 INFO  ServerProxy:27 - Caught user
-02-11-2021 14:14:25 ERROR Client:53 - Error occurred in client 
+02-11-2021 14:14:25 ERROR Client:53 - Error occurred in client
 java.net.ConnectException: Connection refused: connect
 	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
 	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:101)
