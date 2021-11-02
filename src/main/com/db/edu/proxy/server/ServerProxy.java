@@ -13,28 +13,25 @@ public class ServerProxy {
 
     public static void main(String[] args) {
         final Logger logger = LoggerFactory.getLogger(ServerProxy.class);
-        ServerSocket serverSocket = null;
         MessageKeeper keeper = new MessageKeeper();
         ConnectionList connections = new ConnectionList();
 
-        try {
-            serverSocket = new ServerSocket(SocketHolder.getPort());
+        try (final ServerSocket serverSocket = new ServerSocket(SocketHolder.getPort())) {
+            while (true) {
+                try {
+                    Socket socket = serverSocket.accept();
+                    if (socket != null) {
+                        logger.info("Caught user");
+                        new ForClientThread(socket, keeper, connections).start();
+                        connections.addConnection(socket);
+                    }
+                    connections.clean();
+                } catch (IOException e) {
+                    logger.error("No users");
+                }
+            }
         } catch (IOException e) {
             logger.error("Can't connect");
-        }
-
-        while (true) {
-            try {
-                Socket socket = serverSocket.accept();
-                if (socket != null) {
-                    logger.info("Caught user");
-                    new ForClientThread(socket, keeper, connections).start();
-                    connections.addConnection(socket);
-                }
-                connections.clean();
-            } catch (IOException e) {
-                logger.error("No users");
-            }
         }
     }
 }
