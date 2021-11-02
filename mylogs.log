@@ -81,3 +81,5 @@ java.net.ConnectException: Connection refused: connect
 	at main.com.db.edu.proxy.client.Client.run(Client.java:36)
 	at main.com.db.edu.proxy.client.ClientProxy.main(ClientProxy.java:12)
 02-11-2021 14:14:30 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:28:31 INFO  ServerProxy:27 - Caught user
+02-11-2021 14:28:48 INFO  ServerProxy:27 - Caught user

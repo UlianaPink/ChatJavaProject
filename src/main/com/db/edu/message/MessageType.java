@@ -6,7 +6,8 @@ public enum MessageType {
     CHROOM("/chroom"),
     CHID("/chid"),
     CHECK("/checkConnection"),
-    SDNP("/sdnp");
+    SDNP("/sdnp"),
+    INCORRECT_NAME("Incorrect name");
 
     private final String type;
 
