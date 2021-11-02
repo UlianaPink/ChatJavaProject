@@ -35,6 +35,7 @@ public class Client {
         ) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             MessageParser parser = new MessageParser();
+            socket.setSoTimeout(3000);
 
             while (true) {
                 String clientMessage = "";
@@ -78,7 +79,8 @@ public class Client {
     private void checkAvailability(DataOutputStream out, DataInputStream input) throws IOException {
         out.writeUTF(MessageType.CHECK.getType());
         out.flush();
-        if (input.available() > 0 && !Objects.equals(input.readUTF(), MessageType.CHECK.getType())) {
+        if ((input.available() > 0 && !Objects.equals(input.readUTF(), MessageType.CHECK.getType()))
+                || input.available() < 0) {
             System.out.print("Sorry, server is not available\n");
             throw new IllegalArgumentException("Cannot connect to server");
         }
