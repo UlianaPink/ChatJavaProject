@@ -89,3 +89,6 @@ java.net.ConnectException: Connection refused: connect
 02-11-2021 14:28:31 INFO  ServerProxy:27 - Caught user
 02-11-2021 14:28:48 INFO  ServerProxy:27 - Caught user
 02-11-2021 14:48:46 INFO  ServerProxy:27 - Caught user
+02-11-2021 15:26:44 ERROR ServerProxy:38 - Can't create main server socket
+02-11-2021 15:27:36 INFO  ServerProxy:27 - Caught user
+02-11-2021 15:46:36 INFO  ServerProxy:27 - Caught user
