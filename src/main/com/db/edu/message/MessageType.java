@@ -4,7 +4,8 @@ public enum MessageType {
     SEND("/snd"),
     HIST("/hist"),
     CHROOM("/chroom"),
-    NAME("/name");
+    CHID("/chid"),
+    CHECK("/checkConnection");
 
     private final String type;
 
