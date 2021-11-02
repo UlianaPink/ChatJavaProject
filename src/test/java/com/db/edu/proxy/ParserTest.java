@@ -1,6 +1,6 @@
-package com.db.edu.proxy;
+package test.com.db.edu.proxy;
 
-import com.db.edu.parser.MessageParser;
+import main.com.db.edu.parser.MessageParser;
 import org.junit.jupiter.api.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -19,24 +19,23 @@ public class ParserTest {
     public void baseMessageSent() {
         clientMessage = "/snd hello";
         clientMessage = parser.parse(clientMessage);
-        assertEquals(" hello", clientMessage);
+        assertEquals("hello", clientMessage);
     }
 
-/*     @Test
-   public void messageSizeOverMaxLength() {
+    @Test
+    public void messageSizeOverMaxLength() {
         clientMessage =
                 "/snd 12345_12345_12345_12345_12345_" +
                         "12345_12345_12345_12345_12345_" +
                         "12345_12345_12345_12345_12345_" +
                         "12345_12345_12345_12345_12345_" +
                         "12345_12345_12345_12345_12345_!";
-        clientMessage = parser.parse(clientMessage);
+//        clientMessage = parser.parse(clientMessage);
+        final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,()->parser.parse(clientMessage));
+        assertThat(thrown).hasMessage("Sorry, but your message is too long," +
+                " please, use no more than 150 symbols\n");
 
-        assertEquals(" 12345_12345_12345_12345_12345_" +
-                "12345_12345_12345_12345_12345_" +
-                "12345_12345_12345_12345_12345_" +
-                "12345_12345_12345_12345_12345_" +
-                "12345_12345_12345_12345_12345...", clientMessage);
+
     }
 
     @Test
@@ -44,16 +43,16 @@ public class ParserTest {
         clientMessage = "/snd Hello Мир!№;(%?:%№Ё";
         clientMessage = parser.parse(clientMessage);
 
-        assertEquals(" Hello Мир!№;(%?:%№Ё", clientMessage);
-    } */
+        assertEquals("Hello Мир!№;(%?:%№Ё", clientMessage);
+    }
 
 
- /*   @Test
+    @Test
     public void noCommandBeforeMessageSent() {
         clientMessage = "Hello";
         final IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,()->parser.parse(clientMessage));
-        assertThat(thrown).hasMessage("Wrong message");
-    } */
+        assertThat(thrown).hasMessage("You sent a message without any command. Please try again with existing commands. Ex: /snd message\n");
+    }
 
 
 

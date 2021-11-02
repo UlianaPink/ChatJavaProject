@@ -11,7 +11,7 @@ public class ClientProxy {
             Client client = new Client();
             client.run();
         } catch (Exception e) {
-            System.out.print("Oops, something wrong has occurred\nIf you want to see more, please see logs\n");
+            System.out.println("Oops, something wrong has occurred\nIf you want to see more, please see logs\n");
             logger.error("Exception occurred while starting a client\n", e);
         }
     }
