@@ -15,7 +15,7 @@ public class MessageKeeper {
     public MessageKeeper(String roomId) {
         this.roomId = roomId;
         this.fileController = new FileController(roomId);
-        this.messageBuffer = fulfillBufferFromFile();
+        this.messageBuffer = new ArrayList<>();
     }
 
     public synchronized void addMessage(StringMessage message) {
