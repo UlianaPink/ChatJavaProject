@@ -3,8 +3,6 @@ package main.com.db.edu.proxy.server;
 import main.com.db.edu.message.StringMessage;
 import main.com.db.edu.proxy.server.user.User;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -29,16 +27,10 @@ public class ForClientThread extends Thread {
     }
 
     public void run() {
-        DataInputStream in;
-        DataOutputStream out;
-
         try {
-            in = user.connectIn();
-            out = user.connectOut();
-
             while (true) {
-                workWithMessage(in, out);
-                out.flush();
+                workWithMessage();
+                user.connectOut().flush();
             }
 
         } catch (IOException e) {
@@ -46,30 +38,69 @@ public class ForClientThread extends Thread {
         }
     }
 
-    private void workWithMessage(DataInputStream in, DataOutputStream out) throws IOException {
-        String receivedLine = in.readUTF();
+    private void workWithMessage() throws IOException {
+        String receivedLine = user.connectIn().readUTF();
         switch (receivedLine) {
             case "/hist":
-                room.printHistory(out);
+                room.printHistory(user.connectOut());
                 break;
             case "/chid":
-                user.setId(in.readUTF());
+                rename();
                 break;
-            case "/checkConnection":
-                out.writeUTF("/checkConnection");
+            case "/sdnp":
+                sendPrivateMessage();
                 break;
             case "/chroom":
-                String newRoom = in.readUTF();
-                room.removeUser(user);
-                room = getRoomById(newRoom, rooms);
-                room.addUser(user);
-                out.writeUTF("You changed room to " + room.getId());
+                changeRoom();
                 break;
             default:
-                StringMessage message = new StringMessage(receivedLine, user);
-                room.addMessage(message);
-                room.sendToEveryone(message.getMessage());
+                sendMessage(receivedLine);
                 break;
         }
+    }
+
+    private User searchInRoomsByName(String name, ArrayList<Room> rooms) {
+        for (Room room : rooms) {
+            if (room.getUserList().findUserByName(name) != null) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    private void rename() throws IOException {
+        String newName = user.connectIn().readUTF();
+        User userWithThisName = searchInRoomsByName(newName, rooms);
+        if (userWithThisName == null) {
+            user.setId(newName);
+        } else {
+            user.connectOut().writeUTF("This name already exists!");
+        }
+    }
+
+    private void sendPrivateMessage() throws IOException {
+        String receiverName = user.connectIn().readUTF();
+        String messageToReceive = user.connectIn().readUTF();
+        User receiver = room.getUserList().findUserByName(receiverName);
+        if (receiver == null) {
+            user.connectOut().writeUTF("Incorrect username");
+        } else {
+            user.connectOut().writeUTF("Message sent to " + receiver.getId());
+            receiver.connectOut().writeUTF(messageToReceive);
+        }
+    }
+
+    private void changeRoom() throws IOException {
+        String newRoom = user.connectIn().readUTF();
+        room.removeUser(user);
+        room = getRoomById(newRoom, rooms);
+        room.addUser(user);
+        user.connectOut().writeUTF("You changed room to " + room.getId());
+    }
+
+    private void sendMessage(String receivedLine) throws IOException {
+        StringMessage message = new StringMessage(receivedLine, user);
+        room.addMessage(message);
+        room.sendToEveryone(message.getMessage());
     }
 }
