@@ -5,7 +5,8 @@ public enum MessageType {
     HIST("/hist"),
     CHROOM("/chroom"),
     CHID("/chid"),
-    CHECK("/checkConnection");
+    CHECK("/checkConnection"),
+    SDNP("/sdnp");
 
     private final String type;
 

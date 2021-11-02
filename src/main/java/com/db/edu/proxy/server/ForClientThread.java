@@ -2,11 +2,17 @@ package main.com.db.edu.proxy.server;
 
 import main.com.db.edu.message.StringMessage;
 import main.com.db.edu.proxy.server.user.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class ForClientThread extends Thread {
+    final Logger logger = LoggerFactory.getLogger(ForClientThread.class);
+
     private final User user;
     private final ArrayList<Room> rooms;
     private Room room;
@@ -34,7 +40,7 @@ public class ForClientThread extends Thread {
             }
 
         } catch (IOException e) {
-            System.out.println("Error:" + e);
+            logger.error("Can't connect to user;s output and input");
         }
     }
 
