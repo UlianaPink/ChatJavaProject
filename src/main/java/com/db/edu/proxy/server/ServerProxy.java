@@ -34,8 +34,8 @@ public class ServerProxy {
                     logger.error("No users");
                 }
             }
-        } catch (IOException e) {
-            logger.error("Can't create main server socket");
+        } catch (Exception e) {
+            logger.error("Something went wrong " + e);
         }
     }
 
